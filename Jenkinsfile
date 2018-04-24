@@ -34,5 +34,27 @@ pipeline {
 			}
 		}
 	}
+	post {
++		unstable{
++			emailext (
++                subject: "Unit test failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
++                body: """Unit test failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
++                    Check console output at '${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
++                recipientProviders: [[$class: 'FailingTestSuspectsRecipientProvider']],to: 'raj.totaldevops@gmail.com'
++            )
++		}
++		
++        failure {
++            script {
++                currentBuild.result = 'FAILURE'
++            }
++            emailext (
++                subject: "Build failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
++                body: """Build failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
++                Check console output at '${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
++                recipientProviders: [[$class: 'DevelopersRecipientProvider']],to: 'raj.totaldevops@gmail.com'
++            )
++        }
++	}
 
 }

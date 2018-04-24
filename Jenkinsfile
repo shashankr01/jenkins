@@ -35,7 +35,7 @@ pipeline {
 		}
 	}
 	post {
-		unstable{
+		success{
 			emailext (
                 subject: "Unit test failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """Unit test failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'

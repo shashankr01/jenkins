@@ -40,7 +40,7 @@ pipeline {
                 subject: "Unit test failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """Unit test failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
                     Check console output at '${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
-                recipientProviders: [[$class: 'FailingTestSuspectsRecipientProvider']],to: 'raj.totaldevops@gmail.com'
+                recipientProviders: [[$class: 'FailingTestSuspectsRecipientProvider']],to: 'shashank.kr01@gmail.com'
             )
 		}
 		
@@ -52,7 +52,7 @@ pipeline {
                 subject: "Build failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
                 body: """Build failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
                 Check console output at '${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]""",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider']],to: 'raj.totaldevops@gmail.com'
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']],to: 'shashank.kr01@gmail.com'
             )
         }
 	}
